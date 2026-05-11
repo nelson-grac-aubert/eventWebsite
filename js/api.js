@@ -1,6 +1,6 @@
 const API_KEY = '08ee540c9a7a450e8b2f52b2fcc5fe70';
 const API_BASE = 'https://api.openagenda.com/v2';
-const EVENTS_LIMIT = 10;
+const EVENTS_LIMIT = 18;
 
 // Agendas aggregated to cover concerts, museum events, and city-wide culture
 const AGENDA_UIDS = [24882772, 2119473, 21769447];
