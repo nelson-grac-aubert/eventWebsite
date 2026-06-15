@@ -16,7 +16,7 @@ function debounce(fn, delay) {
 // Collects the text content of all currently active category chips
 function getActiveCategories() {
   return [...document.querySelectorAll('.chip[aria-pressed="true"]')]
-    .map(btn => btn.textContent.trim().toLowerCase());
+    .map(btn => btn.textContent.trim());
 }
 
 // Reads the current state of all search form controls into a params object
@@ -95,5 +95,5 @@ export function initSearch() {
   initFilterChips(onSearchChange);
 
   if (carouselEl) loadFeatured(carouselEl);
-  loadAndRender(resultsGrid);
+  loadAndRender(resultsGrid, buildSearchParams());
 }
