@@ -16,8 +16,9 @@ function buildAgendaEventsUrl(agendaUid, { keyword = '', categories = [] } = {})
     `timings[gte]=${encodeURIComponent(now)}`,
   ];
 
-  if (keyword) parts.push(`search=${encodeURIComponent(keyword)}`);
-  categories.forEach(cat => parts.push(`keyword[]=${encodeURIComponent(cat)}`));
+  // Merge keyword and categories into a single full-text search term
+  const searchTerms = [keyword, ...categories].filter(Boolean).join(' ');
+  if (searchTerms) parts.push(`search=${encodeURIComponent(searchTerms)}`);
 
   return `${API_BASE}/agendas/${agendaUid}/events?${parts.join('&')}`;
 }
@@ -98,11 +99,11 @@ export async function fetchEvents(params = {}) {
     )
   );
 
-  const allEvents = results
-    .filter(r => r.status === 'fulfilled')
-    .flatMap(r => r.value);
+  const fulfilled = results.filter(r => r.status === 'fulfilled');
+  if (!fulfilled.length) throw new Error('All agenda requests failed');
 
-  if (!allEvents.length) throw new Error('No events returned from any agenda');
+  const allEvents = fulfilled.flatMap(r => r.value);
+  if (!allEvents.length) return [];
 
   const deduplicated = deduplicateByUid(allEvents);
 
