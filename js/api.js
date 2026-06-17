@@ -1,3 +1,5 @@
+// API key exposed : no real consequence for this API that is not critical at all
+// full front project, no back
 const API_KEY = '08ee540c9a7a450e8b2f52b2fcc5fe70';
 const API_BASE = 'https://api.openagenda.com/v2';
 const EVENTS_LIMIT = 18;
@@ -7,19 +9,24 @@ const AGENDA_UIDS = [24882772, 2119473, 21769447];
 
 // Builds the query string manually — URLSearchParams encodes brackets which breaks OpenAgenda
 function buildAgendaEventsUrl(agendaUid, { keyword = '', categories = [] } = {}) {
+  // Get the date to only show events in the future
   const now = new Date().toISOString();
 
   const parts = [
     `key=${API_KEY}`,
     `lang=fr`,
     `size=${EVENTS_LIMIT}`,
+    // gte = greater than or equal, OpenAgenda filter
+    // encodeURIComponent : transform : and + of a date format to be valid in an URL
     `timings[gte]=${encodeURIComponent(now)}`,
   ];
 
   // Merge keyword and categories into a single full-text search term
+  // filter(Boolean) to remove empty field, don't wanna search=""
+  // .join : concatenate filters, separated by a blank space 
   const searchTerms = [keyword, ...categories].filter(Boolean).join(' ');
   if (searchTerms) parts.push(`search=${encodeURIComponent(searchTerms)}`);
-
+  // Final assembly of the URL query 
   return `${API_BASE}/agendas/${agendaUid}/events?${parts.join('&')}`;
 }
 
