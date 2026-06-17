@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!-- Screen reader needs to know the language -->
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VillaNova Events – La culture Marseillaise à portée de main</title>
+  <meta name="description" content="Tous les événements culturels de Marseille centralisés en un seul endroit. Clubs, concerts, spectacles, expositions et bien plus encore.">
+
+  <!-- Pre-load fonts and icons for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,-25" rel="stylesheet">
+
+  <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+
+  <!-- Skip link : accessibility, keyboard navigation skips the header, WCAG level A -->
+  <a href="#main-content" class="skip-link">Passer au contenu principal</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <!-- aria-label : screen reader reads that the logo is also a link to the main page -->
+      <a href="index.html" class="logo" aria-label="VillaNova Events – Retour à l'accueil">
+        <span class="logo__villa">VILLA</span><span class="logo__nova">NOVA</span>
+        <!-- aria hidden : screen reader skips the elements that are purely decorative -->
+        <br aria-hidden="true">
+        <span class="logo__events">EVENTS</span>
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- aria-labelledby : links the section to its title,  -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__inner">
+
+        <div class="hero__text">
+          <h1 id="hero-title">La culture Marseillaise n'attend plus que vous</h1>
+          <p class="hero__desc">
+            Tous les événements culturels de Marseille centralisés en un seul endroit.
+            Clubs, concerts, spectacles, expositions et bien plus encore.
+          </p>
+        </div>
+
+        <!-- eco-conception picture : .webp, alt for accessibility, width & heights to reserve the screen
+        size, fetchpriority high cause it's the first thing that needs to be displayed  -->
+        <picture class="hero__media">
+          <img
+            src="../assets/hero.webp"
+            alt="Concert avec lumières colorées et foule en liesse à Marseille"
+            width="660"
+            height="440"
+            fetchpriority="high"
+          >
+        </picture>
+
+      </div>
+    </section>
+
+    <section class="featured" id="a-la-une" aria-labelledby="featured-title">
+      <div class="container">
+        <h2 id="featured-title">À LA UNE CE MOIS-CI</h2>
+        <!-- role = region : telsl the screen reader it's a zone that can be browsed
+        aria-roledescription = carrousel : replace region by "carrousel" -->
+        <div class="event-carousel" role="region" aria-roledescription="carrousel" aria-label="Événements à la une">
+          <!-- aria-live = polite : wait for the user to be done 
+          reading to announce the injection of element in thelist -->
+          <ul class="event-grid" role="list" aria-live="polite">
+            <!-- Populated by JS -->
+          </ul>
+          <div class="carousel__dots" role="tablist" aria-label="Slides du carrousel">
+            <!-- aria selected : carrousel dots, aria-label because it's just a grey dot -->
+            <button role="tab" aria-selected="true"  aria-label="Slide 1" class="carousel__dot carousel__dot--active"></button>
+            <button role="tab" aria-selected="false" aria-label="Slide 2" class="carousel__dot"></button>
+            <button role="tab" aria-selected="false" aria-label="Slide 3" class="carousel__dot"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="search-section" id="recherche" aria-labelledby="search-title">
+      <div class="container">
+        <h2 id="search-title">RECHERCHER UN ÉVÉNEMENT</h2>
+        <!-- role = search to identify this form as a search tool -->
+        <form class="search-form" role="search" aria-label="Formulaire de recherche d'événements">
+
+          <div class="search-form__input-wrapper">
+            <!-- aria-hidden = "true" for decorative icons  -->
+            <span class="material-symbols-outlined search-form__icon" aria-hidden="true">search</span>
+            <label for="search-input" class="sr-only">Rechercher un concert, un lieu, un artiste</label>
+            <input
+              type="search"
+              id="search-input"
+              name="q"
+              class="search-form__input"
+              placeholder="Recherchez un concert, un lieu, un artiste..."
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="search-form__date-wrapper">
+            <span class="material-symbols-outlined search-form__icon" aria-hidden="true">calendar_month</span>
+            <label for="date-filter" class="sr-only">Filtrer par période</label>
+            <select id="date-filter" name="date" class="search-form__select">
+              <option value="this-week">Cette semaine</option>
+              <option value="this-month">Ce mois-ci</option>
+              <option value="next-month">Le mois prochain</option>
+            </select>
+            <span class="material-symbols-outlined search-form__chevron" aria-hidden="true">keyboard_arrow_down</span>
+          </div>
+
+          <fieldset class="search-form__categories">
+            <legend class="sr-only">Filtrer par catégorie</legend>
+            <div class="search-form__chips">
+              <!-- type = "button" on chips because in a form, default button behavior is "submit" -->
+              <button type="button" class="chip" aria-pressed="false">Concert</button>
+              <button type="button" class="chip" aria-pressed="false">Théâtre</button>
+              <button type="button" class="chip" aria-pressed="false">Ballet</button>
+              <button type="button" class="chip" aria-pressed="false">Clubbing</button>
+              <button type="button" class="chip" aria-pressed="false">Exposition</button>
+              <button type="button" class="chip" aria-pressed="false">Cinéma</button>
+              <button type="button" class="chip" aria-pressed="false">Opéra</button>
+              <button type="button" class="chip" aria-pressed="false">Salons</button>
+            </div>
+          </fieldset>
+
+        </form>
+
+        <div class="search-results" aria-live="polite" aria-atomic="false" aria-label="Résultats de la recherche">
+          <ul class="event-grid" role="list">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+
+      <div class="site-footer__brand">
+        <p class="site-footer__logo">
+          <a href="index.html" aria-label="VillaNova Events – Retour à l'accueil">
+            <span class="logo__villa">Villa</span><span class="logo__nova">Nova</span> Events
+          </a>
+        </p>
+        <p class="site-footer__tagline">La culture Marseillaise à portée de main</p>
+        <ul class="site-footer__social" role="list" aria-label="Nos réseaux sociaux">
+          <li>
+            <!-- target = _blank, new tab // rel = noopener noreferrer the opened
+            tab could access the parent via JS, security breach -->
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="VillaNova Events sur Instagram">
+              <!-- Aria-hidden = true for all social networks icon, the link has a aria-label -->
+              <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="VillaNova Events sur Facebook">
+              <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.791-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.268h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="VillaNova Events sur X (anciennement Twitter)">
+              <svg aria-hidden="true" focusable="false" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.213 5.567 5.951-5.567zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <nav class="site-footer__nav" aria-label="Navigation secondaire">
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Événements</h3>
+          <ul role="list">
+            <li><a href="#">Tous les événements</a></li>
+            <li><a href="#a-la-une">A la une</a></li>
+            <li><a href="#recherche">Recherche</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">En savoir plus</h3>
+          <ul role="list">
+            <li><a href="https://www.marseille.fr" target="_blank" rel="noopener noreferrer">Ville de Marseille</a></li>
+            <li><a href="https://www.ticketmaster.fr" target="_blank" rel="noopener noreferrer">TicketMaster</a></li>
+            <li><a href="https://www.marseille-tourisme.com" target="_blank" rel="noopener noreferrer">Office du Tourisme</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Support</h3>
+          <ul role="list">
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+  </footer>
+
+  <!-- JS entrypoint -->
+  <script type="module" src="../js/main.js"></script>
+</body>
+</html>
