@@ -1,0 +1,99 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Search form — stacked inputs with pill-shaped wrappers
+.search-form {
+  @include flex-col($sp-md);
+  max-width: 800px;
+  margin-inline: auto;
+  margin-bottom: $sp-xl;
+
+  // Shared style for the text input and date select wrappers
+  &__input-wrapper,
+  &__date-wrapper {
+    display: flex;
+    align-items: center;
+    gap: $sp-xs;
+    background: $color-bg-light;
+    border: 1px solid $color-border;
+    border-radius: $radius-pill;
+    padding: 0.625rem $sp-sm;
+
+    &:focus-within { @include focus-ring; }
+
+    .material-symbols-outlined {
+      color: $color-secondary;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+  }
+
+  &__input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: $font-body;
+    font-size: $fs-base;
+    color: $color-text;
+    min-width: 0;
+
+    &::placeholder { color: $color-secondary; }
+    &:focus        { outline: none; }
+  }
+
+  &__select {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-family: $font-body;
+    font-size: $fs-base;
+    color: $color-secondary;
+    appearance: none;
+    cursor: pointer;
+    min-width: 0;
+
+    &:focus { outline: none; }
+  }
+
+  // Non-interactive chevron icon — appearance only
+  &__chevron {
+    color: $color-secondary;
+    pointer-events: none;
+    font-size: 1.25rem;
+  }
+
+  &__categories {
+    border: none;
+    padding: 0;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $sp-xs;
+  }
+}
+
+// Pill-shaped toggle buttons for category filtering
+.chip {
+  padding: 0.375rem $sp-sm;
+  border: 1px solid $color-secondary;
+  border-radius: $radius-pill;
+  font-family: $font-body;
+  font-size: $fs-sm;
+  font-weight: 500;
+  color: $color-secondary;
+  background: $color-white;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+
+  &:hover { background: rgba($color-secondary, 0.08); }
+
+  &--active,
+  &[aria-pressed="true"] {
+    background: $color-primary;
+    border-color: $color-primary;
+    color: $color-white;
+  }
+
+  &:focus-visible { @include focus-ring; }
+}
