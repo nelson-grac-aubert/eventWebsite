@@ -1,7 +1,7 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-// Global reset — consistent box model and no default margin/padding
+// Global reset : consistent box model and no default margin/padding
 *,
 *::before,
 *::after {
