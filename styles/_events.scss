@@ -166,3 +166,18 @@
 
   &:focus-visible { @include focus-ring; }
 }
+
+// Feedback states shown while events are loading or when an error occurs
+.loading-msg {
+  text-align: center;
+  color: $color-secondary;
+  padding: $sp-xl 0;
+  font-style: italic;
+}
+
+.error-msg {
+  text-align: center;
+  color: #c0392b;
+  padding: $sp-xl 0;
+  font-weight: 500;
+}

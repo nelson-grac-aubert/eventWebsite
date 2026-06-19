@@ -477,6 +477,20 @@ address {
   border-radius: 0.25rem;
 }
 
+.loading-msg {
+  text-align: center;
+  color: #266faf;
+  padding: 3rem 0;
+  font-style: italic;
+}
+
+.error-msg {
+  text-align: center;
+  color: #c0392b;
+  padding: 3rem 0;
+  font-weight: 500;
+}
+
 .search-form {
   display: flex;
   flex-direction: column;
@@ -757,18 +771,4 @@ address {
   color: #266faf;
   font-size: 0.875rem;
   border-bottom: none;
-}
-
-.loading-msg {
-  text-align: center;
-  color: #266faf;
-  padding: 3rem 0;
-  font-style: italic;
-}
-
-.error-msg {
-  text-align: center;
-  color: #c0392b;
-  padding: 3rem 0;
-  font-weight: 500;
 }/*# sourceMappingURL=style.css.map */

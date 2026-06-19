@@ -1,0 +1,153 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Back link shown at the top of the event detail page
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: $sp-xs;
+  color: $color-secondary;
+  font-size: $fs-sm;
+  font-weight: 500;
+  padding-block: $sp-sm;
+
+  .material-symbols-outlined { font-size: 1.125rem; }
+
+  &:hover { color: $color-primary; text-decoration: underline; }
+  &:focus-visible { @include focus-ring; }
+}
+
+// Detail page layout — single column on mobile, article + sidebar on desktop
+.event-detail__layout {
+  @include flex-col($sp-lg);
+  padding-bottom: $sp-2xl;
+
+  @include respond-to(desktop) {
+    display: grid;
+    grid-template-columns: 1fr 17rem;
+    align-items: start;
+    gap: $sp-xl;
+  }
+}
+
+.event-detail {
+  @include card;
+  padding: $sp-md;
+
+  @include respond-to(desktop) { padding: $sp-xl; }
+
+  &__hero {
+    // Negative margin bleeds the image out of the card padding for a full-width effect
+    margin: #{-$sp-md} #{-$sp-md} $sp-md;
+
+    @include respond-to(desktop) { margin: #{-$sp-xl} #{-$sp-xl} $sp-xl; }
+
+    img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+  }
+
+  &__header {
+    @include flex-col($sp-xs);
+    margin-bottom: $sp-md;
+  }
+
+  &__dates {
+    font-size: $fs-sm;
+    color: $color-secondary;
+    font-weight: 500;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: $fs-xl;
+    color: $color-accent;
+    line-height: 1.2;
+
+    @include respond-to(desktop) { font-size: $fs-2xl; }
+  }
+
+  &__location { @include flex-col(0.25rem); }
+
+  &__venue {
+    font-weight: 700;
+    color: $color-primary;
+    font-size: $fs-md;
+  }
+
+  &__address {
+    font-size: $fs-sm;
+    color: $color-secondary;
+  }
+
+  &__description {
+    margin-bottom: $sp-md;
+    line-height: 1.8;
+    color: $color-night;
+  }
+
+  &__official-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: $color-secondary;
+    font-weight: 500;
+    text-decoration: underline;
+    margin-top: $sp-sm;
+
+    .material-symbols-outlined { font-size: 1rem; }
+
+    &:hover { color: $color-primary; }
+    &:focus-visible { @include focus-ring; }
+  }
+}
+
+// Sidebar is sticky on desktop so it stays visible while scrolling the article
+.event-detail__sidebar {
+  @include respond-to(desktop) {
+    position: sticky;
+    top: 5rem;
+  }
+}
+
+// Action list — border-separated on mobile, card-style on desktop
+.event-actions {
+  @include flex-col(0);
+  border-top: 1px solid $color-border;
+  padding-block: $sp-xs;
+
+  @include respond-to(desktop) {
+    @include card;
+    padding: $sp-md;
+  }
+}
+
+.event-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $sp-xs;
+  width: 100%;
+  padding: $sp-sm;
+  font-family: $font-body;
+  font-size: $fs-base;
+  font-weight: 500;
+  color: $color-primary;
+  border-bottom: 1px solid $color-border;
+  text-align: center;
+
+  .material-symbols-outlined { font-size: 1.25rem; }
+
+  &:hover { background: rgba($color-primary, 0.05); }
+  &:focus-visible { @include focus-ring; }
+
+  // Report action is visually de-emphasised and has no bottom border
+  &--report {
+    color: $color-secondary;
+    font-size: $fs-sm;
+    border-bottom: none;
+  }
+}
