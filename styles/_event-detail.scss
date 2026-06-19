@@ -17,7 +17,7 @@
   &:focus-visible { @include focus-ring; }
 }
 
-// Detail page layout — single column on mobile, article + sidebar on desktop
+// Detail page layout : single column on mobile, article + sidebar on desktop
 .event-detail__layout {
   @include flex-col($sp-lg);
   padding-bottom: $sp-2xl;
@@ -113,7 +113,7 @@
   }
 }
 
-// Action list — border-separated on mobile, card-style on desktop
+// Action list : border-separated on mobile, card-style on desktop
 .event-actions {
   @include flex-col(0);
   border-top: 1px solid $color-border;

@@ -7,7 +7,7 @@ const EVENTS_LIMIT = 18;
 // Agendas aggregated to cover concerts, museum events, and city-wide culture
 const AGENDA_UIDS = [24882772, 2119473, 21769447];
 
-// Builds the query string manually — URLSearchParams encodes brackets which breaks OpenAgenda
+// Builds the query string manually : URLSearchParams encodes brackets which breaks OpenAgenda
 function buildAgendaEventsUrl(agendaUid, { keyword = '', categories = [] } = {}) {
   // Get the date to only show events in the future
   const now = new Date().toISOString();
@@ -54,7 +54,7 @@ function getDateRange(dateFilter) {
   return null;
 }
 
-// Filters events client-side by firstTiming.begin — more reliable than API-side timings params
+// Filters events client-side by firstTiming.begin : more reliable than API-side timings params
 function filterByDateRange(events, dateFilter) {
   const range = getDateRange(dateFilter);
   if (!range) return events;
@@ -123,7 +123,7 @@ export async function fetchEvents(params = {}) {
   return filterOutAgencyEvents(filtered).slice(0, EVENTS_LIMIT);
 }
 
-// Tries each agenda in turn — stops at the first one that returns a valid event object
+// Tries each agenda in turn : stops at the first one that returns a valid event object
 export async function fetchEventById(eventUid) {
   for (const agendaUid of AGENDA_UIDS) {
     const url = `${API_BASE}/agendas/${agendaUid}/events/${eventUid}?key=${API_KEY}&lang=fr`;

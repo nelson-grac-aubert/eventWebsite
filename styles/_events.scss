@@ -22,7 +22,7 @@
 
 .featured { background: $color-bg-light; }
 
-// Carousel wrapper — dots are positioned relative to this
+// Carousel wrapper : dots are positioned relative to this
 .event-carousel {
   position: relative;
 }
@@ -62,7 +62,7 @@
   @include respond-to(tablet) { grid-template-columns: repeat(3, 1fr); }
 }
 
-// Event card — interactive lift on hover/focus, full height within the grid cell
+// Event card : interactive lift on hover/focus, full height within the grid cell
 .event-card {
   @include card;
   @include flex-col(0);
@@ -144,7 +144,7 @@
   }
 }
 
-// Dot indicators — visible on mobile only, hidden from tablet up
+// Dot indicators : visible on mobile only, hidden from tablet up
 .carousel__dots {
   display: flex;
   justify-content: center;

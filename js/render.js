@@ -37,7 +37,7 @@ function storeEventInSession(event) {
   try {
     sessionStorage.setItem('currentEvent', JSON.stringify(event));
   } catch {
-    // sessionStorage unavailable — detail page will fall back to API
+    // sessionStorage unavailable : detail page will fall back to API
   }
 }
 
@@ -52,7 +52,7 @@ export function createEventCard(event) {
   const li      = createElement('li', 'event-grid__item');
   const article = createElement('article', 'event-card');
 
-  // Image link is hidden from assistive tech — the title link is the real CTA
+  // Image link is hidden from assistive tech : the title link is the real CTA
   const imgLink = createElement('a', 'event-card__media-link');
   imgLink.href = detailUrl;
   imgLink.tabIndex = -1;
