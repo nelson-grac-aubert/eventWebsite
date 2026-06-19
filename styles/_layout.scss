@@ -161,7 +161,7 @@
     margin-bottom: $sp-xs;
   }
 
-  ul { @include flex-col($sp-xs); }
+  &__nav ul { @include flex-col($sp-xs); }
 
   a {
     font-size: $fs-sm;
