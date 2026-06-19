@@ -1,4 +1,4 @@
-// Safe DOM creation helpers — never use innerHTML to avoid XSS vulnerabilities
+// Safe DOM creation helpers : never use innerHTML to avoid XSS vulnerabilities
 
 // Creates an element with an optional class and text content
 export function createElement(tag, className = '', text = '') {

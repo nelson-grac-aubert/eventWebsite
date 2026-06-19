@@ -31,7 +31,7 @@ export function initShareButton() {
         announce('Lien copié dans le presse-papier.');
       }
     } catch {
-      // User cancelled the share dialog — no action needed
+      // User cancelled the share dialog : no action needed
     }
   });
 }

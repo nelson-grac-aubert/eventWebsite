@@ -22,7 +22,7 @@ function getEventFromSession(uid) {
   }
 }
 
-// Loads and renders a single event — uses sessionStorage cache first, API as fallback
+// Loads and renders a single event : uses sessionStorage cache first, API as fallback
 export async function initDetailPage() {
   const uid     = getEventUidFromUrl();
   const article = document.querySelector('.event-detail');

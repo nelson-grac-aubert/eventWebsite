@@ -1,7 +1,7 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
-// Search form — stacked inputs with pill-shaped wrappers
+// Search form : stacked inputs with pill-shaped wrappers
 .search-form {
   @include flex-col($sp-md);
   max-width: 800px;
@@ -55,7 +55,7 @@
     &:focus { outline: none; }
   }
 
-  // Non-interactive chevron icon — appearance only
+  // Non-interactive chevron icon : appearance only
   &__chevron {
     color: $color-secondary;
     pointer-events: none;
