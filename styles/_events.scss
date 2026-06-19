@@ -1,0 +1,168 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Shared heading style for the featured and search sections
+.featured,
+.search-section {
+  padding-block: $sp-xl;
+
+  h2 {
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: $fs-lg;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: $color-primary;
+    text-align: center;
+    margin-bottom: $sp-lg;
+
+    @include respond-to(desktop) { font-size: $fs-xl; }
+  }
+}
+
+.featured { background: $color-bg-light; }
+
+// Carousel wrapper — dots are positioned relative to this
+.event-carousel {
+  position: relative;
+}
+
+// Mobile: horizontal scroll snap carousel. Tablet+: regular 3-column grid.
+.featured .event-grid {
+  display: flex;
+  gap: $sp-md;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+
+  .event-grid__item {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+
+  @include respond-to(tablet) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-x: visible;
+    scroll-snap-type: none;
+
+    .event-grid__item { flex: none; }
+  }
+}
+
+// Search results always render as a standard responsive grid
+.search-results .event-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $sp-md;
+
+  @include respond-to(tablet) { grid-template-columns: repeat(3, 1fr); }
+}
+
+// Event card — interactive lift on hover/focus, full height within the grid cell
+.event-card {
+  @include card;
+  @include flex-col(0);
+  height: 100%;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &:hover,
+  &:focus-within {
+    box-shadow: 0 4px 20px rgba($color-primary, 0.12);
+    transform: translateY(-2px);
+  }
+
+  &__media-link {
+    display: block;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img { transform: scale(1.04); }
+  }
+
+  &__body {
+    @include flex-col($sp-xs);
+    padding: $sp-sm;
+    flex: 1;
+  }
+
+  &__date {
+    font-size: $fs-sm;
+    color: $color-secondary;
+    font-weight: 500;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 600;
+    font-size: $fs-md;
+
+    a {
+      color: $color-accent;
+      &:hover { text-decoration: underline; }
+      &:focus-visible { @include focus-ring; }
+    }
+  }
+
+  &__location {
+    font-size: $fs-sm;
+    color: $color-secondary;
+    font-weight: 500;
+  }
+
+  &__desc {
+    font-size: $fs-sm;
+    color: $color-night;
+    line-height: 1.5;
+    // Clamp to 3 lines with CSS ellipsis
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: $fs-sm;
+    font-weight: 500;
+    color: $color-primary;
+    margin-top: auto;
+    padding-top: $sp-xs;
+
+    &:hover { text-decoration: underline; color: $color-secondary; }
+    &:focus-visible { @include focus-ring; }
+  }
+}
+
+// Dot indicators — visible on mobile only, hidden from tablet up
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: $sp-xs;
+  margin-top: $sp-md;
+
+  @include respond-to(tablet) { display: none; }
+}
+
+.carousel__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: $radius-pill;
+  background: $color-border;
+  transition: background 0.2s;
+
+  &--active,
+  &[aria-selected="true"] { background: $color-primary; }
+
+  &:focus-visible { @include focus-ring; }
+}

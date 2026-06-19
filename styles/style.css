@@ -426,7 +426,6 @@ address {
   color: #03121d;
   line-height: 1.5;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -726,7 +725,6 @@ address {
     border-radius: 0.75rem;
     overflow: hidden;
     padding: 1.5rem;
-    border-top: none;
   }
 }
 
