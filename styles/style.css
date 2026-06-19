@@ -12,12 +12,19 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   color: #03121d;
   background: #FFFFFF;
   -webkit-font-smoothing: antialiased;
+}
+
+main {
+  flex: 1;
 }
 
 img {

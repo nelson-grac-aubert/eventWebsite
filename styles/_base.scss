@@ -16,12 +16,20 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: $font-body;
   font-size: $fs-base;
   line-height: 1.6;
   color: $color-text;
   background: $color-white;
   -webkit-font-smoothing: antialiased;
+}
+
+// Grows to fill the remaining space so the footer is always pushed to the bottom
+main {
+  flex: 1;
 }
 
 // Prevent images from overflowing their container
