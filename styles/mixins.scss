@@ -1,0 +1,42 @@
+@use 'variables' as *;
+
+// Generates a min-width media query for the given breakpoint name
+@mixin respond-to($bp) {
+  @if $bp == tablet  { @media (min-width: $bp-tablet)  { @content; } }
+  @if $bp == desktop { @media (min-width: $bp-desktop) { @content; } }
+}
+
+// Hides content visually while keeping it accessible to screen readers
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Consistent WCAG AA compliant focus indicator for all interactive elements
+@mixin focus-ring {
+  outline: 3px solid $color-accent;
+  outline-offset: 3px;
+  border-radius: $radius-sm;
+}
+
+// White bordered card with rounded corners
+@mixin card {
+  background: $color-white;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+// Flex column layout shorthand with configurable gap
+@mixin flex-col($gap: $sp-sm) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
